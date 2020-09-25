@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30128.74
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{0CA4D775-598C-409F-8DE0-0D62C01DEE3E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{A8D1CBA7-21D0-4730-AA89-7FB03D53A985}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProblemTemplateGenerator.Cli", "src\ProblemTemplateGenerator.Cli\ProblemTemplateGenerator.Cli.csproj", "{1715BA54-75C3-485C-AF6E-8E461AECB2A5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1715BA54-75C3-485C-AF6E-8E461AECB2A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1715BA54-75C3-485C-AF6E-8E461AECB2A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1715BA54-75C3-485C-AF6E-8E461AECB2A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1715BA54-75C3-485C-AF6E-8E461AECB2A5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{1715BA54-75C3-485C-AF6E-8E461AECB2A5} = {0CA4D775-598C-409F-8DE0-0D62C01DEE3E}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B7D6DC61-5633-4DFD-863B-B3DDF9D13392}
+	EndGlobalSection
+EndGlobal
