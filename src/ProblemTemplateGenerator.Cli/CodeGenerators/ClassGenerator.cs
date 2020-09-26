@@ -62,6 +62,8 @@ namespace ProblemTemplateGenerator.Cli.CodeGenerators
 			return "/// <summary>\n"
 				 + "\t/// Time complexity: O(...).\n" 
 				 + "\t/// Space complexity: O(...).\n" 
+				 + "\t/// Runtime: .\n" 
+				 + "\t/// Memory Usage: .\n" 
 				 + "\t/// </summary>\n";
 		}
 	}
