@@ -15,7 +15,6 @@ namespace ProblemTemplateGenerator.Cli.Parsers
 	public class LeetCodeProblemParser : IProblemParser
 	{		
 		private readonly Regex headParser = new Regex(@"(\d+).\s(.*)", RegexOptions.IgnoreCase | RegexOptions.Compiled, TimeSpan.FromSeconds(10));
-		private readonly Regex specialCharReplacer = new Regex(@"[^a-zA-Z0-9 .]+", RegexOptions.IgnoreCase | RegexOptions.Compiled, TimeSpan.FromSeconds(10));
 		private readonly Regex whitespaceReplacer = new Regex(@"[ \t]+(\r?$)", RegexOptions.IgnoreCase | RegexOptions.Compiled, TimeSpan.FromSeconds(10));
 		private readonly Uri baseUri = new Uri("https://leetcode.com/problems/");
 		
@@ -73,7 +72,7 @@ namespace ProblemTemplateGenerator.Cli.Parsers
 			var numberStr = match.Groups[1].Value;
 			var titleStr = match.Groups[2].Value;
 
-			return (int.Parse(numberStr), specialCharReplacer.Replace(titleStr, ""));
+			return (int.Parse(numberStr), titleStr);
 		}
 
 		private static DifficultType ParseDifficult(ISearchContext searchContext)

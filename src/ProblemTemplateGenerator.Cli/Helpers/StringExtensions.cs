@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace ProblemTemplateGenerator.Cli.Helpers
 {
 	public static class StringExtensions
 	{
+		private static readonly Regex specialCharReplacer = new Regex(@"[^a-zA-Z0-9 .]+", RegexOptions.IgnoreCase | RegexOptions.Compiled, TimeSpan.FromSeconds(10));
+		
 		public static string Join(this IEnumerable<string> enumerable, string? separator = null)
 		{
 			if (enumerable == null)
@@ -30,7 +33,7 @@ namespace ProblemTemplateGenerator.Cli.Helpers
 			if (str == null)
 				throw new ArgumentNullException(nameof(str));
 
-			return str.Split(' ').Select(FirstCharToUpper).Join();
+			return specialCharReplacer.Replace(str, "").Split(' ').Select(FirstCharToUpper).Join();
 		}
 
 		public static string ToInterfaceName(this string str)
