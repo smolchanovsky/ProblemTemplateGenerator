@@ -14,8 +14,9 @@ namespace ProblemTemplateGenerator.Cli.Parsers
 {
 	public class LeetCodeProblemParser : IProblemParser
 	{		
-		private readonly Regex titleParagraphParser = new Regex(@"(\d+).\s(.*)", RegexOptions.IgnoreCase | RegexOptions.Compiled, TimeSpan.FromSeconds(10));
-		private readonly Regex statementTrimmer = new Regex(@"[ \t]+(\r?$)", RegexOptions.IgnoreCase | RegexOptions.Compiled, TimeSpan.FromSeconds(10));
+		private readonly Regex headParser = new Regex(@"(\d+).\s(.*)", RegexOptions.IgnoreCase | RegexOptions.Compiled, TimeSpan.FromSeconds(10));
+		private readonly Regex specialCharReplacer = new Regex(@"[^a-zA-Z0-9 .]+", RegexOptions.IgnoreCase | RegexOptions.Compiled, TimeSpan.FromSeconds(10));
+		private readonly Regex whitespaceReplacer = new Regex(@"[ \t]+(\r?$)", RegexOptions.IgnoreCase | RegexOptions.Compiled, TimeSpan.FromSeconds(10));
 		private readonly Uri baseUri = new Uri("https://leetcode.com/problems/");
 		
 		private readonly IWebDriverFactory webDriverFactory;
@@ -68,11 +69,11 @@ namespace ProblemTemplateGenerator.Cli.Parsers
 				.FindElementOrDefault(By.XPath("//*[contains(@data-cy,'question-title')]"))
 				?? throw new NotFoundException("Title not found");
 
-			var match = titleParagraphParser.Match(titleParagraph.Text);
+			var match = headParser.Match(titleParagraph.Text);
 			var numberStr = match.Groups[1].Value;
 			var titleStr = match.Groups[2].Value;
 
-			return (int.Parse(numberStr), titleStr);
+			return (int.Parse(numberStr), specialCharReplacer.Replace(titleStr, ""));
 		}
 
 		private static DifficultType ParseDifficult(ISearchContext searchContext)
@@ -98,7 +99,7 @@ namespace ProblemTemplateGenerator.Cli.Parsers
 			if (statementParagraphs.Length == 0)
 				throw new NotFoundException("Statement not found");
 
-			return statementTrimmer.Replace(string.Join(" ", statementParagraphs), "$1");
+			return whitespaceReplacer.Replace(string.Join(" ", statementParagraphs), "");
 		}
 
 		private static string ParseCode(ISearchContext searchContext)
